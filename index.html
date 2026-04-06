@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Desa Wisata Kajii - Pesona Alam yang Memikat</title>
+    <!-- Font Awesome 6 (Free Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Poppins & Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Swiper JS CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FEFCF5;
+            color: #2C2A29;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo, .nav-links a {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* custom scroll */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #E9E2D4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8B6B4F;
+            border-radius: 10px;
+        }
+
+        /* container */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 252, 245, 0.92);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.02);
+            transition: all 0.3s;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #2E5A3A, #B87C4F);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #3A2C24;
+            transition: 0.25s;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.3px;
+        }
+        .nav-links a:hover {
+            color: #B87C4F;
+            transform: translateY(-2px);
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: #3A2C24;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat fixed;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeUp 1s ease-out;
+        }
+        .hero-content h1 {
+            font-size: 4.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+        .btn-reserve {
+            background: #C17B4B;
+            border: none;
+            padding: 14px 42px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-reserve:hover {
+            background: #A56236;
+            transform: scale(1.05);
+            letter-spacing: 1px;
+        }
+
+        /* Section Umum */
+        section {
+            padding: 100px 0;
+            overflow: hidden;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            font-family: 'Playfair Display', serif;
+            color: #2E5A3A;
+            position: relative;
+        }
+        .section-title:after {
+            content: '';
+            width: 80px;
+            height: 3px;
+            background: #C17B4B;
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Slide 2: deskripsi + gambar */
+        .about-grid {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        .about-text {
+            flex: 1;
+            animation: slideLeft 0.8s;
+        }
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #4F3B2C;
+        }
+        .about-text p {
+            line-height: 1.7;
+            color: #5A4A3A;
+            font-size: 1.05rem;
+        }
+        .about-img {
+            flex: 1;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.15);
+            transition: 0.4s;
+        }
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        .about-img:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Statistik counter */
+        .stats-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            text-align: center;
+        }
+        .stat-card {
+            flex: 1;
+            background: white;
+            padding: 40px 20px;
+            border-radius: 40px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+        .stat-card i {
+            font-size: 3rem;
+            color: #C17B4B;
+            margin-bottom: 20px;
+        }
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            font-family: 'Playfair Display', serif;
+            color: #2E5A3A;
+        }
+        .stat-label {
+            font-size: 1rem;
+            color: #6F5B48;
+            letter-spacing: 1px;
+        }
+
+        /* Galeri Modern */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 1 / 0.9;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            padding: 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: 0.4s ease;
+        }
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+
+        /* Package Carousel */
+        .swiper {
+            width: 100%;
+            padding: 20px 0 50px;
+        }
+        .package-card {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        .package-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .package-info {
+            padding: 24px;
+        }
+        .package-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .package-info p {
+            color: #6F5B48;
+            margin: 8px 0;
+        }
+        .price {
+            font-weight: 800;
+            color: #C17B4B;
+            font-size: 1.3rem;
+        }
+
+        /* review */
+        .review-grid {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .review-card {
+            background: white;
+            border-radius: 40px;
+            padding: 30px;
+            max-width: 350px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: 0.2s;
+        }
+        .stars {
+            color: #FFB347;
+            margin-bottom: 15px;
+        }
+        .review-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        /* berita */
+        .news-grid {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .news-card {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            flex: 1;
+            transition: 0.3s;
+        }
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .news-content {
+            padding: 20px;
+        }
+
+        /* form reservasi */
+        .reservation-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 48px;
+            box-shadow: 0 25px 40px rgba(0,0,0,0.05);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #E0D6CC;
+            border-radius: 60px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: 0.2s;
+        }
+        textarea {
+            border-radius: 28px;
+        }
+        input:focus, select:focus {
+            border-color: #C17B4B;
+        }
+        button[type="submit"] {
+            background: #2E5A3A;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 60px;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        footer {
+            background: #1E2F28;
+            color: #DED4C5;
+            padding: 50px 0 30px;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .social i {
+            font-size: 1.6rem;
+            margin-right: 20px;
+            color: #CBB290;
+            transition: 0.2s;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes slideLeft {
+            from { opacity: 0; transform: translateX(-50px);}
+            to { opacity: 1; transform: translateX(0);}
+        }
+
+        @media (max-width: 992px) {
+            .about-grid {
+                flex-direction: column;
+            }
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                background: #FFFBF2;
+                width: 80%;
+                height: 100vh;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 60px;
+                transition: 0.3s;
+                box-shadow: 5px 0 20px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .stats-grid {
+                flex-direction: column;
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 20px;
+            }
+            section {
+                padding: 70px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <div class="logo">Kajii</div>
+        <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#gallery">Galeri</a></li>
+            <li><a href="#packages">Paket</a></li>
+            <li><a href="#reviews">Ulasan</a></li>
+            <li><a href="#reservation">Reservasi</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section (Slide 1) -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>Desa Wisata Kajii</h1>
+        <p>Harmoni Alam, Budaya, dan Kehangatan Tradisi</p>
+        <button class="btn-reserve" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">Reservasi Sekarang <i class="fas fa-arrow-right"></i></button>
+    </div>
+</section>
+
+<!-- Slide 2: Deskripsi -->
+<section id="about">
+    <div class="container">
+        <h2 class="section-title">Tentang Desa Kajii</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Keindahan yang Tak Terlupakan</h3>
+                <p>Terletak di lembah hijau dengan pesona persawahan dan budaya yang masih kental, Desa Wisata Kajii menawarkan pengalaman autentik. Dari homestay tradisional hingga trekking sungai, setiap sudut desa mengajakmu kembali ke akar ketenangan. Kami menjaga kelestarian alam sekaligus memberdayakan masyarakat lokal.</p>
+                <p>Nikmati keramahan penduduk, kuliner organik, dan aktivitas seru seperti membatik dan menanam padi. Desa Kajii adalah surga tersembunyi yang siap memanjakan jiwa.</p>
+            </div>
+            <div class="about-img">
+                <img src="https://images.pexels.com/photos/2614815/pexels-photo-2614815.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Desa Wisata Kajii">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Slide 3: Count Stats -->
+<section style="background: #F5EFE5;">
+    <div class="container">
+        <h2 class="section-title">Capai Prestasi Bersama</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <div class="stat-number" data-target="15800">0</div>
+                <div class="stat-label">Pengunjung</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-smile"></i>
+                <div class="stat-number" data-target="14700">0</div>
+                <div class="stat-label">Kepuasan Aktivitas</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-chart-line"></i>
+                <div class="stat-number" data-target="2.5">0</div>
+                <div class="stat-label">Pendapatan Tahunan (M)</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <div class="stat-number" data-target="380">0</div>
+                <div class="stat-label">Relawan Aktif</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Slide 4: Galeri Aktivitas Seru -->
+<section id="gallery">
+    <div class="container">
+        <h2 class="section-title">Momen Seru di Kajii</h2>
+        <div class="gallery">
+            <div class="gallery-item"><img src="https://images.pexels.com/photos/919436/pexels-photo-919436.jpeg?auto=compress&cs=tinysrgb&w=600" alt="trekking"><div class="overlay"><span>🚶‍♂️ Trekking Hijau</span></div></div>
+            <div class="gallery-item"><img src="https://images.pexels.com/photos/4101555/pexels-photo-4101555.jpeg?auto=compress&cs=tinysrgb&w=600" alt="membatik"><div class="overlay"><span>🎨 Membatik</span></div></div>
+            <div class="gallery-item"><img src="https://images.pexels.com/photos/326106/pexels-photo-326106.jpeg?auto=compress&cs=tinysrgb&w=600" alt="kuliner"><div class="overlay"><span>🍲 Kuliner Tradisional</span></div></div>
+            <div class="gallery-item"><img src="https://images.pexels.com/photos/2641886/pexels-photo-2641886.jpeg?auto=compress&cs=tinysrgb&w=600" alt="sawah"><div class="overlay"><span>🌾 Menanam Padi</span></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Slide 5: Paket Wisata (Carousel) -->
+<section id="packages" style="background: #FEFCF5;">
+    <div class="container">
+        <h2 class="section-title">Paket Wisata Istimewa</h2>
+        <div class="swiper packageSwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><div class="package-card"><img src="https://images.pexels.com/photos/1547813/pexels-photo-1547813.jpeg?auto=compress&cs=tinysrgb&w=600" alt="paket1"><div class="package-info"><h3>Eco Discovery</h3><p>Jelajah hutan & outbound 2D1N</p><div class="price">IDR 650K</div></div></div></div>
+                <div class="swiper-slide"><div class="package-card"><img src="https://images.pexels.com/photos/1770809/pexels-photo-1770809.jpeg?auto=compress&cs=tinysrgb&w=600" alt="paket2"><div class="package-info"><h3>Budaya & Batik</h3><p>Workshop batik + makan tradisional</p><div class="price">IDR 350K</div></div></div></div>
+                <div class="swiper-slide"><div class="package-card"><img src="https://images.pexels.com/photos/258117/pexels-photo-258117.jpeg?auto=compress&cs=tinysrgb&w=600" alt="paket3"><div class="package-info"><h3>Romantic Getaway</h3><p>Private villa & dinner candlelight</p><div class="price">IDR 1.2M</div></div></div></div>
+                <div class="swiper-slide"><div class="package-card"><img src="https://images.pexels.com/photos/1148990/pexels-photo-1148990.jpeg?auto=compress&cs=tinysrgb&w=600" alt="paket4"><div class="package-info"><h3>Petualangan Air Terjun</h3><p>Trekking & rafting seru</p><div class="price">IDR 490K</div></div></div></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Slide 6: Review Pengunjung -->
+<section id="reviews">
+    <div class="container">
+        <h2 class="section-title">Yang Mereka Rasakan</h2>
+        <div class="review-grid">
+            <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"Desa Kajii bikin hati tenang, pemandangan menakjubkan, warganya ramah!"</p><h4>— Andini P.</h4></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"Paket wisata lengkap, guide expert, dan makanannya enak banget. Highly recommend!"</p><h4>— Budi S.</h4></div>
+            <div class="review-card"><div class="stars">★★★★☆</div><p class="review-text">"Pengalaman membatik seru, anak-anak happy. Akan kembali lagi!"</p><h4>— Melisa W.</h4></div>
+        </div>
+    </div>
+</section>
+
+<!-- Slide 7: Berita Terbaru -->
+<section style="background:#F5EFE5;">
+    <div class="container">
+        <h2 class="section-title">Berita & Event</h2>
+        <div class="news-grid">
+            <div class="news-card"><img src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=600" alt="festival"><div class="news-content"><h3>Festival Kajii Meriah</h3><p>15-17 Agustus, pentas seni & bazar UMKM meriahkan HUT RI.</p></div></div>
+            <div class="news-card"><img src="https://images.pexels.com/photos/109274/pexels-photo-109274.jpeg?auto=compress&cs=tinysrgb&w=600" alt="penghargaan"><div class="news-content"><h3>Desa Wisata Terbaik 2024</h3><p>Kajii raih penghargaan inovasi pariwisata berkelanjutan.</p></div></div>
+            <div class="news-card"><img src="https://images.pexels.com/photos/139436/pexels-photo-139436.jpeg?auto=compress&cs=tinysrgb&w=600" alt="trekking"><div class="news-content"><h3>Jalur Trekking Baru</h3><p>Dibuka jalur eduwisata menuju puncak bukit Kajii.</p></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Slide 8: Form Reservasi -->
+<section id="reservation">
+    <div class="container">
+        <h2 class="section-title">Pesan Pengalamanmu Sekarang</h2>
+        <div class="reservation-form">
+            <form id="bookingForm">
+                <div class="form-group"><input type="text" placeholder="Nama Lengkap" required></div>
+                <div class="form-group"><input type="email" placeholder="Email Aktif" required></div>
+                <div class="form-group"><input type="tel" placeholder="No. WhatsApp"></div>
+                <div class="form-group"><select><option>Pilih Paket Wisata</option><option>Eco Discovery</option><option>Budaya & Batik</option><option>Romantic Getaway</option><option>Petualangan Air Terjun</option></select></div>
+                <div class="form-group"><input type="date" placeholder="Tanggal Kunjungan"></div>
+                <div class="form-group"><textarea rows="3" placeholder="Catatan khusus (diet, alergi, dll)"></textarea></div>
+                <button type="submit">Kirim Reservasi <i class="fas fa-calendar-check"></i></button>
+                <p style="font-size:0.8rem; text-align:center; margin-top:15px;">Tim kami akan menghubungi dalam 1x24 jam</p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div><h3 style="color:#E8DBCB;">Desa Wisata Kajii</h3><p>Membawa kedamaian & petualangan</p></div>
+            <div><i class="fas fa-map-marker-alt"></i> Dusun Kajii, Kec. Lestari, Jawa Timur<br><i class="fas fa-phone-alt"></i> +62 812 3456 7890</div>
+            <div class="social"><i class="fab fa-instagram"></i><i class="fab fa-facebook"></i><i class="fab fa-youtube"></i><p>© 2025 Kajii, All rights reserved</p></div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    // Mobile toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
+
+    // Counter Stats with scroll trigger
+    const counters = document.querySelectorAll('.stat-number');
+    const speed = 180;
+    const startCounters = () => {
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = parseFloat(counter.getAttribute('data-target'));
+                let current = parseFloat(counter.innerText);
+                const increment = target / speed;
+                if (current < target) {
+                    let newVal = current + increment;
+                    if (target >= 1000) counter.innerText = Math.ceil(newVal);
+                    else counter.innerText = newVal.toFixed(1);
+                    setTimeout(updateCount, 20);
+                } else {
+                    if (target >= 1000) counter.innerText = Math.floor(target).toLocaleString();
+                    else counter.innerText = target;
+                }
+            };
+            updateCount();
+        });
+    };
+    // Intersection observer
+    const statsSection = document.querySelector('#about + section');
+    let counted = false;
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !counted) {
+                startCounters();
+                counted = true;
+            }
+        });
+    }, { threshold: 0.3 });
+    if(statsSection) observer.observe(statsSection);
+
+    // Swiper carousel
+    const swiper = new Swiper('.packageSwiper', {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 20,
+        pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        breakpoints: {
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 }
+        }
+    });
+
+    // Simple alert form (prevent default demo)
+    document.getElementById('bookingForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Terima kasih! Tim Reservasi Desa Kajii akan segera menghubungi Anda.');
+        e.target.reset();
+    });
+</script>
+</body>
+</html>
